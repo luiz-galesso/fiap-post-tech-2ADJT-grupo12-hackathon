@@ -16,4 +16,6 @@ public class Pagamento {
     @Id
     private String id;
 
+    private String usuario;
+
 }
