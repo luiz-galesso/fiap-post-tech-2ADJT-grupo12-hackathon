@@ -1,1 +1,1 @@
-INSERT INTO TB_USUARIO (username, password, ROLE) VALUES ('aaaa', 'aaaa', 0);
+INSERT INTO TB_USER (username, password, ROLE) VALUES ('aaaa', 'aaaa', 0);
