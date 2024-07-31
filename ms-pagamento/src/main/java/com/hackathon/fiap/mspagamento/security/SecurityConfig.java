@@ -1,4 +1,4 @@
-package com.hackathon.fiap.mscliente.security;
+package com.hackathon.fiap.mspagamento.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

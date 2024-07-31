@@ -1,4 +1,4 @@
-package com.hackathon.fiap.mscliente.security;
+package com.hackathon.fiap.mspagamento.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
