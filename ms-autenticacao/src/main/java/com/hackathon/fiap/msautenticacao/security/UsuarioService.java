@@ -1,7 +1,6 @@
 package com.hackathon.fiap.msautenticacao.security;
 
 import com.hackathon.fiap.msautenticacao.entity.user.gateway.UserGateway;
-import com.hackathon.fiap.msautenticacao.infrastructure.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
