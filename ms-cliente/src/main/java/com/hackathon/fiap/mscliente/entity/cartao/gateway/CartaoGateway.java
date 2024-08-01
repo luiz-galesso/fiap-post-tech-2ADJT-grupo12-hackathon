@@ -1,10 +1,10 @@
 package com.hackathon.fiap.mscliente.entity.cartao.gateway;
 
 import com.hackathon.fiap.mscliente.entity.cartao.model.Cartao;
+import com.hackathon.fiap.mscliente.entity.cliente.model.Cliente;
 import com.hackathon.fiap.mscliente.infrastructure.cartao.repository.CartaoRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -28,8 +28,5 @@ public class CartaoGateway {
         return this.cartaoRepository.findById(numeroCartao);
     }
 
-    public void remove(String id) {
-        cartaoRepository.deleteById(id);
-    }
-
+    public long countByCliente(Cliente cliente) { return this.cartaoRepository.countByCliente(cliente);}
 }

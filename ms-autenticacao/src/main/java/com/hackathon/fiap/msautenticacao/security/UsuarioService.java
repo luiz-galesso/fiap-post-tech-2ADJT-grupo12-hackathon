@@ -13,7 +13,7 @@ public class UsuarioService implements UserDetailsService {
     UserGateway userGateway;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userGateway.findByUsername(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userGateway.findByUsername(username);
     }
 }

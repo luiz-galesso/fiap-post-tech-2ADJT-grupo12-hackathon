@@ -2,6 +2,7 @@ package com.hackathon.fiap.mscliente.infrastructure.exception;
 
 import com.hackathon.fiap.mscliente.usecase.exception.BusinessErrorException;
 import com.hackathon.fiap.mscliente.usecase.exception.EntityNotFoundException;
+import com.hackathon.fiap.mscliente.usecase.exception.ForbiddenErrorException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,11 +44,19 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(BusinessErrorException.class)
     public ResponseEntity<ErrorDefaultResponse> bussinessError(Exception e, HttpServletRequest request) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         errorReponse.setTimestamp(Instant.now());
         errorReponse.setStatus("KO");
         errorReponse.setMessage(e.getMessage());
         return ResponseEntity.status(status).body(this.errorReponse);
     }
 
+    @ExceptionHandler(ForbiddenErrorException.class)
+    public ResponseEntity<ErrorDefaultResponse> forbiddenError(Exception e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        errorReponse.setTimestamp(Instant.now());
+        errorReponse.setStatus("KO");
+        errorReponse.setMessage(e.getMessage());
+        return ResponseEntity.status(status).body(this.errorReponse);
+    }
 }
