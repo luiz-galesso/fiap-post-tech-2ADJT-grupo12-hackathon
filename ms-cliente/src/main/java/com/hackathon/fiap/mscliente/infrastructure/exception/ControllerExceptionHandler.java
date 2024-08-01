@@ -1,6 +1,6 @@
 package com.hackathon.fiap.mscliente.infrastructure.exception;
 
-import com.hackathon.fiap.mscliente.usecase.exception.BussinessErrorException;
+import com.hackathon.fiap.mscliente.usecase.exception.BusinessErrorException;
 import com.hackathon.fiap.mscliente.usecase.exception.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -41,7 +41,7 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(status).body(this.errorReponse);
     }
 
-    @ExceptionHandler(BussinessErrorException.class)
+    @ExceptionHandler(BusinessErrorException.class)
     public ResponseEntity<ErrorDefaultResponse> bussinessError(Exception e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         errorReponse.setTimestamp(Instant.now());
