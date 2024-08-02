@@ -32,18 +32,18 @@ public class RegistraCartao {
             throw new BusinessErrorException("Já existe cartão com o número informado.");
         }
         Optional<Cliente> clienteOptional = clienteGateway.findById(cartaoRequestDTO.cpf());
-        if (cartaoGateway.countByCliente(clienteOptional.get()) >= 2) {
-            throw new ForbiddenErrorException("Número máximo de cartões atingido");
-        }
         if (clienteOptional.isEmpty()) {
             throw new BusinessErrorException("Cliente não encontrado.");
+        }
+        if (cartaoGateway.countByCliente(clienteOptional.get()) >= 2) {
+            throw new ForbiddenErrorException("Número máximo de cartões atingido");
         }
         if (cartaoRequestDTO.limite() <= 0d) {
             throw new BusinessErrorException("Limite não pode ser negativo ou zero.");
         }
         try {
             mes = Integer.parseInt(cartaoRequestDTO.data_validade().substring(0,2));
-            ano = Integer.parseInt(cartaoRequestDTO.data_validade().substring(3,4));
+            ano = Integer.parseInt(cartaoRequestDTO.data_validade().substring(3,5));
         } catch (Exception e) {
             throw new BusinessErrorException("Data de validade em formato inválido");
         }
