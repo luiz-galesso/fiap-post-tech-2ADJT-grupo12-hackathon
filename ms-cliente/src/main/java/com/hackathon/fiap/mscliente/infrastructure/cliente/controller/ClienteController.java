@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class ClienteController {
     @PostMapping(produces = "application/json")
     @PreAuthorize("hasRole('INTEGRATION')")
     @Transactional
-    public ResponseEntity<?> update(@RequestBody ClienteRequestDTO clienteRequestDTO) {
+    public ResponseEntity<?> update(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
         var clienteResponseDTO = cadastraCliente.execute(clienteRequestDTO);
         return new ResponseEntity<>(clienteResponseDTO, HttpStatus.OK);
     }
