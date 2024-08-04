@@ -45,7 +45,7 @@ public class ClienteControllerTest {
 
     @Test
     @WithMockUser(username = "teste", roles = "integration")
-    void devePermitirCadastrarCliente() throws Exception {
+    void devePermitirCadastrarCartao() throws Exception {
         ClienteRequestDTO clienteRequestDTO = ClienteHelper.gerarClienteRequest();
         ClienteResponseDTO clienteResponseDTO = new ClienteResponseDTO(clienteRequestDTO.cpf());
         when(cadastrarCliente.execute(any(ClienteRequestDTO.class))).thenReturn(clienteResponseDTO);

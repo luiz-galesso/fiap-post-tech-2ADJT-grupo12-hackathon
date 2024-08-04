@@ -86,7 +86,7 @@ class RegistraCartaoIT {
     void deveGerarExcecao_QuandoRegistrarCartao_DataValidadeInvalida() {
         Cliente cliente = ClienteHelper.gerarCliente();
         clienteGateway.create(cliente);
-        CartaoRequestDTO cartaoRequestDTO = new CartaoRequestDTO(cliente.getCpf(), 1000.00, "6421 5031 9012 5471", "12/A2024", "123");
+        CartaoRequestDTO cartaoRequestDTO = new CartaoRequestDTO(cliente.getCpf(), 1000.00, "6421 5031 9012 5471", "12/A24", "123");
 
         assertThatThrownBy(() -> registraCartao.execute(cartaoRequestDTO))
                 .isInstanceOf(BusinessErrorException.class)

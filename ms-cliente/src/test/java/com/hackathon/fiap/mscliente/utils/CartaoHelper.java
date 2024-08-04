@@ -14,7 +14,7 @@ public class CartaoHelper {
         return new CartaoRequestDTO(cpf
                 , limite
                 , numero
-                , "30-2030"
+                , "10-30"
                 , cvv
         );
     }
