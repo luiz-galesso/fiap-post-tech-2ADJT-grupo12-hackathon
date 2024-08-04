@@ -1,6 +1,5 @@
 package com.hackathon.fiap.mscliente.entity.cliente.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -13,6 +12,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @Getter
 @Setter
 @AllArgsConstructor
+@Builder(toBuilder = true)
 @NoArgsConstructor
 public class Cliente {
 
