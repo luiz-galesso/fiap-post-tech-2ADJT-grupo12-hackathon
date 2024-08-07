@@ -17,6 +17,7 @@ import java.util.List;
 @Table(name = "tb_user")
 @Getter
 @Setter
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = {"role"})
