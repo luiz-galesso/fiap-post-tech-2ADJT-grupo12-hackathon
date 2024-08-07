@@ -35,7 +35,7 @@ public class CartaoController {
     @Transactional
     public ResponseEntity<?> create(@RequestBody CartaoRequestDTO cartaoRequestDTO) {
         registraCartao.execute(cartaoRequestDTO);
-        return new ResponseEntity<>(new DefaultResponse(Instant.now(),"OK", null), HttpStatus.CREATED);
+        return new ResponseEntity<>(new DefaultResponse(Instant.now(),"OK", null), HttpStatus.OK);
     }
 
     @Operation(summary = "Consome limite do Cartão", description = "Serviço utilizado para consumir o limite de um cartão.")
