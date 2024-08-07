@@ -4,15 +4,9 @@ import com.hackathon.fiap.mscliente.entity.cartao.gateway.CartaoGateway;
 import com.hackathon.fiap.mscliente.entity.cartao.model.Cartao;
 import com.hackathon.fiap.mscliente.infrastructure.cartao.controller.dto.ConsomeLimiteRequestDTO;
 import com.hackathon.fiap.mscliente.infrastructure.cartao.controller.dto.ConsomeLimiteResponseDTO;
-import com.hackathon.fiap.mscliente.infrastructure.cartao.controller.dto.ValidaCartaoRequestDTO;
 import com.hackathon.fiap.mscliente.infrastructure.cartao.controller.dto.ValidaCartaoResponseDTO;
-import com.hackathon.fiap.mscliente.usecase.exception.BusinessErrorException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

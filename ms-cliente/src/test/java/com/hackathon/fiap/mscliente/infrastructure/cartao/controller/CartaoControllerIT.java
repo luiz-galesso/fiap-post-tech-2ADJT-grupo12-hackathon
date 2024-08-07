@@ -52,7 +52,6 @@ class CartaoControllerIT {
                 .post("/api/cartao")
                 .then()
                 .log().all();
-        //.statusCode(HttpStatus.CREATED.value());
     }
 
     @Test
@@ -70,7 +69,6 @@ class CartaoControllerIT {
                 .put("/api/cartao/limite")
                 .then()
                 .log().all();
-        //.statusCode(HttpStatus.CREATED.value());
     }
 
 }

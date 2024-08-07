@@ -33,8 +33,6 @@ public class CartaoControllerTest {
     @Mock
     private RegistraCartao registraCartao;
     @Mock
-    private ValidaCartao validaCartao;
-    @Mock
     private ConsomeLimite consomeLimite;
     @Mock
     private CadastraCliente cadastrarCliente;
@@ -44,7 +42,7 @@ public class CartaoControllerTest {
     @BeforeEach
     void setup() {
         mock = MockitoAnnotations.openMocks(this);
-        CartaoController cartaoController = new CartaoController(registraCartao, validaCartao, consomeLimite);
+        CartaoController cartaoController = new CartaoController(registraCartao, consomeLimite);
         mockMvc = MockMvcBuilders.standaloneSetup(cartaoController)
                 .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
                 .build();
@@ -75,7 +73,6 @@ public class CartaoControllerTest {
     @WithMockUser(username = "teste", roles = "integration")
     void devePermitirConsumirLimite() throws Exception {
         ClienteRequestDTO clienteRequestDTO = ClienteHelper.gerarClienteRequest();
-        //ClienteResponseDTO clienteResponseDTO = new ClienteResponseDTO(clienteRequestDTO.cpf());
         CartaoRequestDTO cartaoRequestDTO = CartaoHelper.gerarClienteRequest(clienteRequestDTO.cpf());
         ConsomeLimiteRequestDTO consomeLimiteRequestDTO = new ConsomeLimiteRequestDTO(clienteRequestDTO.cpf(), cartaoRequestDTO.numero(), cartaoRequestDTO.data_validade(), cartaoRequestDTO.cvv(), 10D);
 

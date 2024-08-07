@@ -47,7 +47,6 @@ class ClienteControllerIT {
                 .post("/api/cliente")
                 .then()
                 .log().all();
-                //.statusCode(HttpStatus.CREATED.value());
     }
 
 }

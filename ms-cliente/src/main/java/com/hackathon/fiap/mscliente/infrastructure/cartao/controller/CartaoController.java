@@ -3,9 +3,9 @@ package com.hackathon.fiap.mscliente.infrastructure.cartao.controller;
 import com.hackathon.fiap.mscliente.infrastructure.cartao.controller.dto.CartaoRequestDTO;
 import com.hackathon.fiap.mscliente.infrastructure.cartao.controller.dto.ConsomeLimiteRequestDTO;
 import com.hackathon.fiap.mscliente.infrastructure.cartao.controller.dto.ConsomeLimiteResponseDTO;
-import com.hackathon.fiap.mscliente.infrastructure.cartao.controller.dto.ValidaCartaoRequestDTO;
 import com.hackathon.fiap.mscliente.infrastructure.util.DefaultResponse;
-import com.hackathon.fiap.mscliente.usecase.cartao.*;
+import com.hackathon.fiap.mscliente.usecase.cartao.ConsomeLimite;
+import com.hackathon.fiap.mscliente.usecase.cartao.RegistraCartao;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,7 +25,6 @@ import java.time.Instant;
 public class CartaoController {
 
     private final RegistraCartao registraCartao;
-    private final ValidaCartao validaCartao;
     private final ConsomeLimite consomeLimite;
 
     @Operation(summary = "Registro de cartão", description = "Serviço utilizado para cadastrar um novo cartão de um cliente.")
