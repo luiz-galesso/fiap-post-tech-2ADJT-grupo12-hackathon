@@ -1,10 +1,12 @@
 package com.hackathon.fiap.mscliente.infrastructure.cliente.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
+import org.hibernate.validator.constraints.br.CPF;
 
-public record ClienteRequestDTO(@JsonProperty("cpf") String cpf
+public record ClienteRequestDTO(@CPF(message = "CPF nao valido") @JsonProperty("cpf") String cpf
                                 ,@JsonProperty("nome") String nome
-                                ,@JsonProperty("email") String email
+                                ,@Email(message = "Email nao valido") @JsonProperty("email") String email
                                 ,@JsonProperty("telefone") String telefone
                                 ,@JsonProperty("rua") String rua
                                 ,@JsonProperty("cidade") String cidade

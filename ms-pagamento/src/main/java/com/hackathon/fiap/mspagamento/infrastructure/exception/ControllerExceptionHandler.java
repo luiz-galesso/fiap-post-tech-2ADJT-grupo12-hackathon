@@ -2,6 +2,7 @@ package com.hackathon.fiap.mspagamento.infrastructure.exception;
 
 import com.hackathon.fiap.mspagamento.usecase.exception.BussinessErrorException;
 import com.hackathon.fiap.mspagamento.usecase.exception.EntityNotFoundException;
+import com.hackathon.fiap.mspagamento.usecase.exception.LimitErrorException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,16 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(BussinessErrorException.class)
     public ResponseEntity<ErrorDefaultResponse> bussinessError(Exception e, HttpServletRequest request) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        errorReponse.setTimestamp(Instant.now());
+        errorReponse.setStatus("KO");
+        errorReponse.setMessage(e.getMessage());
+        return ResponseEntity.status(status).body(this.errorReponse);
+    }
+
+    @ExceptionHandler(LimitErrorException.class)
+    public ResponseEntity<ErrorDefaultResponse> limitError(Exception e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.PAYMENT_REQUIRED;
         errorReponse.setTimestamp(Instant.now());
         errorReponse.setStatus("KO");
         errorReponse.setMessage(e.getMessage());
