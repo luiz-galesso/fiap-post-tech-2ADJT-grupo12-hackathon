@@ -1,7 +1,5 @@
 package com.hackathon.fiap.msautenticacao.infrastructure.exception;
 
-import com.hackathon.fiap.msautenticacao.usecase.exception.BussinessErrorException;
-import com.hackathon.fiap.msautenticacao.usecase.exception.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +13,14 @@ import java.time.Instant;
 public class ControllerExceptionHandler {
     private ErrorDefaultResponse errorReponse = new ErrorDefaultResponse();
 
-    @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ErrorDefaultResponse> entityNotFound(EntityNotFoundException e, HttpServletRequest request) {
-        HttpStatus status = HttpStatus.NOT_FOUND;
-        errorReponse.setTimestamp(Instant.now());
-        errorReponse.setStatus("KO");
-        errorReponse.setMessage(e.getMessage());
-        return ResponseEntity.status(status).body(this.errorReponse);
-    }
+//    @ExceptionHandler(EntityNotFoundException.class)
+//    public ResponseEntity<ErrorDefaultResponse> entityNotFound(EntityNotFoundException e, HttpServletRequest request) {
+//        HttpStatus status = HttpStatus.NOT_FOUND;
+//        errorReponse.setTimestamp(Instant.now());
+//        errorReponse.setStatus("KO");
+//        errorReponse.setMessage(e.getMessage());
+//        return ResponseEntity.status(status).body(this.errorReponse);
+//    }
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorDefaultResponse> invalidRequest(HttpMessageNotReadableException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
@@ -41,13 +39,13 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(status).body(this.errorReponse);
     }
 
-    @ExceptionHandler(BussinessErrorException.class)
-    public ResponseEntity<ErrorDefaultResponse> bussinessError(Exception e, HttpServletRequest request) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-        errorReponse.setTimestamp(Instant.now());
-        errorReponse.setStatus("KO");
-        errorReponse.setMessage(e.getMessage());
-        return ResponseEntity.status(status).body(this.errorReponse);
-    }
+//    @ExceptionHandler(BussinessErrorException.class)
+//    public ResponseEntity<ErrorDefaultResponse> bussinessError(Exception e, HttpServletRequest request) {
+//        HttpStatus status = HttpStatus.BAD_REQUEST;
+//        errorReponse.setTimestamp(Instant.now());
+//        errorReponse.setStatus("KO");
+//        errorReponse.setMessage(e.getMessage());
+//        return ResponseEntity.status(status).body(this.errorReponse);
+//    }
 
 }
