@@ -82,6 +82,11 @@
             <version>1.0.2</version> <!-- Versão mais recente disponível -->
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!--teste api rest-->
         <dependency>
             <groupId>io.rest-assured</groupId>
