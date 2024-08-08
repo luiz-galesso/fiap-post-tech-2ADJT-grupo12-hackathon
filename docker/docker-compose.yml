@@ -78,7 +78,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: passpagamento
       PORT: 8080
       JWT_SECRET: pZ8Pst0rRsG0ylUsTSYTm97rD3P3LY3sJsIHXvG2ug4hCR15idue66UDXuq3dhBI
-      CARTAO_URL: http://ms-pagamento:8082/
+      CARTAO_URL: http://ms-cliente:8080/
       
   adminer:
     image: adminer
