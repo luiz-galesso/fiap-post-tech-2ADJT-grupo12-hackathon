@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  db-autenticacao:
+    image: postgres:latest
+    container_name: db-autenticacao
+    environment:
+      POSTGRES_USER: dbautenticacao
+      POSTGRES_PASSWORD: passautenticacao
+      POSTGRES_DB: db-autenticacao
+    ports:
+      - "5432:5432"
+    volumes:
+      - autenticacao-data:/var/lib/postgresql/data
+
+  db-cliente:
+    image: postgres:latest
+    container_name: db-cliente
+    environment:
+      POSTGRES_USER: dbcliente
+      POSTGRES_PASSWORD: passcliente
+      POSTGRES_DB: db-cliente
+    ports:
+      - "5433:5432"
+    volumes:
+      - cliente-data:/var/lib/postgresql/data
+
+  db-pagamento:
+    image: postgres:latest
+    container_name: db-pagamento
+    environment:
+      POSTGRES_USER: dbpagamento
+      POSTGRES_PASSWORD: passpagamento
+      POSTGRES_DB: db-pagamento
+    ports:
+      - "5434:5432"
+    volumes:
+      - pagamento-data:/var/lib/postgresql/data
+
+  ms-autenticacao:
+    container_name: ms-autenticacao
+    build: ../ms-autenticacao/.
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db-autenticacao
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db-autenticacao:5432/db-autenticacao
+      SPRING_DATASOURCE_USERNAME: dbautenticacao
+      SPRING_DATASOURCE_PASSWORD: passautenticacao
+      PORT: 8080
+      JWT_SECRET: pZ8Pst0rRsG0ylUsTSYTm97rD3P3LY3sJsIHXvG2ug4hCR15idue66UDXuq3dhBI
+
+  ms-cliente:
+    container_name: ms-cliente
+    build: ../ms-cliente/.
+    ports:
+      - "8082:8080"
+    depends_on:
+      - db-cliente
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db-cliente:5432/db-cliente
+      SPRING_DATASOURCE_USERNAME: dbcliente
+      SPRING_DATASOURCE_PASSWORD: passcliente
+      PORT: 8080
+      JWT_SECRET: pZ8Pst0rRsG0ylUsTSYTm97rD3P3LY3sJsIHXvG2ug4hCR15idue66UDXuq3dhBI
+  
+  ms-pagamento:
+    container_name: ms-pagamento
+    build: ../ms-pagamento/.
+    ports:
+      - "8083:8080"
+    depends_on:
+      - db-pagamento
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db-pagamento:5432/db-pagamento
+      SPRING_DATASOURCE_USERNAME: dbpagamento
+      SPRING_DATASOURCE_PASSWORD: passpagamento
+      PORT: 8080
+      JWT_SECRET: pZ8Pst0rRsG0ylUsTSYTm97rD3P3LY3sJsIHXvG2ug4hCR15idue66UDXuq3dhBI
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8090:8080
+
+volumes:
+  autenticacao-data:
+  cliente-data:
+  pagamento-data:
