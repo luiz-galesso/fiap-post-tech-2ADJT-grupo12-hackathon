@@ -13,7 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/api/cliente")
 @Tag(name = "Cliente", description = "Serviços para manipular os clientes")
 @AllArgsConstructor
 public class ClienteController {
@@ -26,8 +26,8 @@ public class ClienteController {
     @PreAuthorize("hasRole('INTEGRATION')")
     @Transactional
     public ResponseEntity<?> update(@RequestBody ClienteRequestDTO clienteRequestDTO) {
-        var cliente = cadastraCliente.execute(clienteRequestDTO);
-        return new ResponseEntity<>(cliente, HttpStatus.CREATED);
+        var clienteResponseDTO = cadastraCliente.execute(clienteRequestDTO);
+        return new ResponseEntity<>(clienteResponseDTO, HttpStatus.OK);
     }
 
 }
