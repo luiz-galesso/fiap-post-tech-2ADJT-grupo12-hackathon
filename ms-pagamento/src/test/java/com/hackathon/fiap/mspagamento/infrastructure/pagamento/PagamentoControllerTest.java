@@ -2,6 +2,7 @@ package com.hackathon.fiap.mspagamento.infrastructure.pagamento;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hackathon.fiap.mspagamento.infrastructure.exception.ControllerExceptionHandler;
 import com.hackathon.fiap.mspagamento.infrastructure.pagamento.controller.PagamentoController;
 import com.hackathon.fiap.mspagamento.infrastructure.pagamento.controller.dto.PagamentoRequestDTO;
 import com.hackathon.fiap.mspagamento.usecase.pagamento.ObtemPagamentosPorCliente;
@@ -42,6 +43,7 @@ public class PagamentoControllerTest {
         PagamentoController reservaController = new PagamentoController(realizaPagamento, obtemPagamentosPorCliente);
         mockMvc = MockMvcBuilders.standaloneSetup(reservaController)
                 .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
+                .setControllerAdvice(new ControllerExceptionHandler())
                 .build();
 
     }
