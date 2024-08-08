@@ -93,7 +93,7 @@ public class PagamentoControllerIT {
             .header("Authorization", "Bearer " + token)
             .body(pagamentoRequestDTO)
         .when()
-            .post("/pagamentos")
+            .post("/api/pagamentos")
         .then()
                 .log().all()
                 .statusCode(200);
@@ -106,7 +106,7 @@ public class PagamentoControllerIT {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .get("/pagamentos/cliente/{chave}", "12345678909")
+                .get("/api/pagamentos/cliente/{chave}", "12345678909")
         .then()
                 .statusCode(200);
     }
