@@ -66,7 +66,7 @@ public class PagamentoControllerTest {
 
         //act
         mockMvc.perform(
-                post("/pagamentos").header("Authorization", "Bearer " + token)
+                post("/api/pagamentos").header("Authorization", "Bearer " + token)
                     .content(asJsonString(pagamentoRequestDTO))
                         .contentType(MediaType.APPLICATION_JSON)
 
@@ -87,7 +87,7 @@ public class PagamentoControllerTest {
 
         //act
         mockMvc.perform(
-                get("/pagamentos/cliente/{chave}", "12345678909")
+                get("/api/pagamentos/cliente/{chave}", "12345678909")
                         .header("Authorization", "Bearer " + token)
         ).andExpect(status().isOk());
 
