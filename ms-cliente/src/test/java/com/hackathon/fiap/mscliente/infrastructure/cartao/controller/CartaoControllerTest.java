@@ -65,7 +65,7 @@ public class CartaoControllerTest {
         mockMvc.perform(post("/api/cartao")
                 .content(asJsonString(cartaoRequestDTO))
                 .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isCreated());
+        ).andExpect(status().isOk());
         verify(registraCartao, times(1)).execute(any(CartaoRequestDTO.class));
     }
 
